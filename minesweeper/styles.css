@@ -17,7 +17,7 @@ body {
 }
 
 .subtext {
-  color: #CCC;
+  color: #ccc;
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
@@ -38,12 +38,12 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
-  border: 2px solid #BBB;
+  border: 2px solid #bbb;
   user-select: none;
 }
 
 .board > [data-status="hidden"] {
-  background-color: #BBB;
+  background-color: #bbb;
   cursor: pointer;
 }
 
@@ -60,4 +60,27 @@ body {
   background-color: yellow;
   background-image: url(Trophy_12.webp);
   cursor: pointer;
+}
+
+.info-modal {
+  z-index: 10;
+  position: absolute;
+  margin: auto;
+  top: 350px;
+  background-color: rgb(245, 244, 244);
+  font-size: 2rem;
+  color: black;
+  width: 350px;
+  height: 150px;
+  text-align: center;
+  display: none;
+  padding: 1rem;
+}
+
+.show {
+  display: block;
+}
+
+.modal-text {
+  margin-bottom: 1rem;
 }
