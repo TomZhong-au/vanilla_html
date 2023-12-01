@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Card Display</title>
+    <style>
+      .data-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin: 20px auto;
+        width: 300px;
+        background-color: #f9f9f9;
+      }
+
+      .data-card h2 {
+        color: #333;
+        font-size: 24px;
+      }
+
+      .data-card p {
+        color: #666;
+        font-size: 16px;
+      }
+
+      #update {
+        text-align: center;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="data-card">
+      <h2 id="userName">Name</h2>
+      <p>ID: <span id="userId">0</span></p>
+      <p>Age: <span id="userAge">0</span></p>
+      <p>Hobby: <span id="userHobby">N/A</span></p>
+    </div>
+    <div id="update">page updated at <span id="time"></span></div>
+    <script>
+      const APIURL =
+        "https://jqy8nzlk6i.execute-api.ap-southeast-2.amazonaws.com/default/return-random-person"; // Replace with your API URL
+      const INTERVAL = 1000;
+
+      function updateData(data) {
+        const pattern = /.+(?=GMT)/;
+        const time = new Date().toString().match(pattern)[0];
+
+        document.getElementById("userName").textContent = data.name;
+        document.getElementById("userId").textContent = data.id;
+        document.getElementById("userAge").textContent = data.age;
+        document.getElementById("userHobby").textContent = data.hobby;
+        document.getElementById("time").textContent = time;
+      }
+
+      function fetchData() {
+        fetch(APIURL)
+          .then((response) => response.json())
+          .then(updateData)
+          .catch((error) => console.error("Error:", error));
+      }
+
+      // Fetch data every {INTERVAL} millisecond
+      fetchData();
+      setInterval(fetchData, INTERVAL);
+    </script>
+  </body>
+</html>
